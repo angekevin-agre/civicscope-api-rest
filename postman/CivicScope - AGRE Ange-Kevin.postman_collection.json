@@ -1,0 +1,566 @@
+{
+  "info": {
+    "_postman_id": "2d4205a0-c679-4116-8851-3bcb353e4600",
+    "name": "CivicScope - AGRE Ange-Kevin",
+    "description": "Collection de tests de l'API CivicScope (régions et élections).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59109275",
+    "_collection_link": "https://go.postman.co/collection/59109275-2d4205a0-c679-4116-8851-3bcb353e4600?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Régions",
+      "item": [
+        {
+          "name": "Lister les régions (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lire la région 01 (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/01",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lire une région inconnue (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "99"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer la région 15 (201)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"15\", \"nom\": \"TEST\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer un doublon (409)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"15\", \"nom\": \"TEST\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer sans nom (400)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"16\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier la région 15 (200)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"15\", \"nom\": \"NOUVEAU\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions/15",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier une région inconnue (404)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"99\", \"nom\": \"X\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions/99",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "99"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier avec nom vide (400)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"15\", \"nom\": \"\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions/15",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer la région 15 (204)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/15",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer une région inconnue (404)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/15",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "regions",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Élections",
+      "item": [
+        {
+          "name": "Lister (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrer par année 2024 (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections?annee=2024",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ],
+              "query": [
+                {
+                  "key": "annee",
+                  "value": "2024"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrer par type LEGISLATIVE (200, vide)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections?type=LEGISLATIVE",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "LEGISLATIVE"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrer par type inconnu (400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections?type=INCONNU",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "INCONNU"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lire PRES2024 (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections/PRES2024",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "PRES2024"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lire une élection inconnue (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections/XXX",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "XXX"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer LEG2022 (201)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"LEG2022\", \"date\": \"2022-07-31\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"TOUR_UNIQUE\", \"codePays\": \"SN\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/elections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer un doublon (409)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"LEG2022\", \"date\": \"2022-07-31\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"TOUR_UNIQUE\", \"codePays\": \"SN\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/elections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Créer incomplète (400)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"LEG2023\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/elections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier LEG2022 (200)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"LEG2022\", \"date\": \"2022-07-31\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"PREMIER_TOUR\", \"codePays\": \"SN\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/elections/LEG2022",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "LEG2022"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier une inconnue (404)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\": \"LEG2022\", \"date\": \"2022-07-31\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"PREMIER_TOUR\", \"codePays\": \"SN\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/elections/XXX",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "XXX"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer LEG2022 (204)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections/LEG2022",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "LEG2022"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer une inconnue (404)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/elections/LEG2022",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "elections",
+                "LEG2022"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Copier ce fichier en "application-local.properties" (ignoré par Git) puis adapter les valeurs.
+spring.datasource.url=jdbc:postgresql://localhost:5432/civiscope
+spring.datasource.username=<votre_utilisateur_postgres>
+spring.datasource.password=<votre_mot_de_passe_postgres>

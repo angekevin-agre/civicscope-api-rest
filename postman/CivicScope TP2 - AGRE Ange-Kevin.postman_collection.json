@@ -1,0 +1,276 @@
+{
+  "info": {
+    "_postman_id": "6fff690f-e1ea-4cee-86c1-4ec41c92a311",
+    "name": "CivicScope TP2 - AGRE Ange-Kevin",
+    "description": "Scénario de test du CRUD des élections (Spring Boot + JPA). Lancer les requêtes dans l'ordre.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59109275",
+    "_collection_link": "https://go.postman.co/collection/59109275-6fff690f-e1ea-4cee-86c1-4ec41c92a311?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1 - Lister les élections (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 - Lire PRES2024 par id (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections/f41a37a7-1ea7-484f-b629-869f18f9637d",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections",
+            "f41a37a7-1ea7-484f-b629-869f18f9637d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 - Lire un id inconnu (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections/00000000-0000-0000-0000-000000000000",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections",
+            "00000000-0000-0000-0000-000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4 - Créer LEG2024 (201)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set(\"legId\", pm.response.json().id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"LEG2024\", \"date\": \"2024-11-17\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"TOUR_UNIQUE\", \"codePays\": \"SN\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/elections",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5 - Créer LEG2024 une seconde fois (409)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"LEG2024\", \"date\": \"2024-11-17\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"TOUR_UNIQUE\", \"codePays\": \"SN\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/elections",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6 - Créer PRES2024-BIS même année, type et tour (409)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"PRES2024-BIS\", \"date\": \"2024-12-01\", \"typeElection\": \"PRESIDENTIELLE\", \"tourElection\": \"PREMIER_TOUR\", \"codePays\": \"SN\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/elections",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7 - Créer sans date (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"SANSDATE\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"TOUR_UNIQUE\", \"codePays\": \"SN\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/elections",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8 - Lister avec limit=2 (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections?limit=2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9 - Modifier LEG2024 en PREMIER_TOUR (200)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"LEG2024\", \"date\": \"2024-11-17\", \"typeElection\": \"LEGISLATIVE\", \"tourElection\": \"PREMIER_TOUR\", \"codePays\": \"SN\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/elections/{{legId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections",
+            "{{legId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10a - Supprimer LEG2024 (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections/{{legId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections",
+            "{{legId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10b - Relire LEG2024 supprimée (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/elections/{{legId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "elections",
+            "{{legId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "legId",
+      "value": ""
+    }
+  ]
+}
