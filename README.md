@@ -223,3 +223,11 @@ Le test `CivicscopeApplicationTests` charge le contexte Spring : le profil `loca
 ## Auteur
 
 **AGRE Ange-Kevin** – étudiant à l'EPSI
+
+## Méthode de travail
+Dépôt réalisé avec l'aide de Claude (Anthropic) comme assistant de développement. Les bases du langage et les choix d'architecture sont les miens. L'IA m'a fait gagner du temps sur la rédaction et le débogage ; chaque modification a été relue et testée avant d'être commitée.
+
+### Ce que j'ai mis en place
+- Aucun secret dans Git : le mot de passe de la base est dans application-local.properties, ignoré par .gitignore, avec un fichier .example fourni.
+- Validation du schéma au démarrage (ddl-auto=validate) plutôt qu'une création automatique des tables.
+- Règles métier vérifiées par un scénario Postman (codes 200, 201, 204, 400, 404, 409) joint au dépôt.
